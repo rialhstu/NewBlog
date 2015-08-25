@@ -1,0 +1,55 @@
+﻿@model NewBlog.Core.Entities.PostName
+@using System.Web.Mvc;
+@using System.Web.Mvc.Html;
+
+<div class="post">
+    <div class="post-meta">
+        <div class="row">
+
+            <!--Heading-->
+            <div class="post-title">
+                <h2>@Html.PostLink(Model)</h2>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <!--Category-->
+            <div class="post-category">
+                <span>Category: </span>@Html.CategoryLink(Model.cagegory)
+            </div>
+
+            <!--Tags-->
+            <div class="post-tags">
+                <span>Tags:</span>@Helpers.Tags(Html, Model.tags)
+            </div>
+
+            <!--Posted date-->
+            <div class="posted-date">
+                @Model.PostedDate.ToConfigLocalTime()
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--Short Description-->
+    <div class="post-body">
+        @Model.Description;
+    </div>
+
+    <div class="post-foot">
+        @Html.ActionLink("continue...", "Post", "Blognew",
+        new
+        {
+            year = Model.PostedDate.Year,
+            month = Model.PostedDate.Month,
+            day = Model.PostedDate.Day,
+            title = Model.UrlName
+        },
+        new { title = "continue..." }
+    )
+    </div>
+</div>
+

@@ -1,0 +1,27 @@
+﻿@model NewBlog.Models.ListView
+
+@{
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="content">
+
+    <h1>@ViewBag.Title</h1>
+
+    @Html.Partial("_Pager", Model)
+
+    @if (Model.pnames.Count > 0)
+    {
+        foreach (var post in Model.pnames)
+        {
+            @Html.Partial("_PostTemp", post)
+        }
+    }
+    else
+    {
+        <p>No posts found!</p>
+    }
+
+
+</div>
